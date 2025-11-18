@@ -1,0 +1,44 @@
+{
+    "name": "casque",
+    "type": "module",
+    "private": true,
+    "author": {
+        "name": "Eigil Sagafos"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/eigilsagafos/casque.git"
+    },
+    "scripts": {
+        "build": "bun --filter 'casque' build",
+        "build:types": "cd packages/casque && bun run build:types",
+        "bump": "bun scripts/bump.tsx",
+        "publish": "bun scripts/publish.tsx",
+        "changeset": "changeset",
+        "changeset:patch": "changeset add --type patch",
+        "changeset:minor": "changeset add --type minor",
+        "changeset:major": "changeset add --type major",
+        "version": "changeset version && bun install --lockfile-only",
+        "version:snapshot": "changeset version --snapshot",
+        "release": "bun run build && bun run build:types && changeset publish",
+        "release:snapshot": "changeset publish --tag next"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^2.3.6",
+        "@changesets/cli": "^2.29.8",
+        "@types/bun": "1.3.2",
+        "eslint": "9.39.1",
+        "eslint-config-prettier": "10.1.8",
+        "ink": "6.5.0",
+        "ink-select-input": "6.2.0",
+        "ink-spinner": "5.0.0",
+        "prettier": "3.6.2",
+        "semver": "7.7.3",
+        "vocs": "1.1.4"
+    },
+    "version": "0.0.1",
+    "workspaces": [
+        "packages/*"
+    ],
+    "packageManager": "bun@1.3.2"
+}

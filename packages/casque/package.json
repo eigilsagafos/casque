@@ -1,0 +1,40 @@
+{
+    "name": "casque",
+    "version": "0.0.2",
+    "type": "module",
+    "description": "Flexible layout system for positioning and aligning elements",
+    "main": "./dist/index.js",
+    "types": "./dist/types/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "types": "./dist/types/index.d.ts"
+        }
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "build": "NODE_ENV=production bun run build.ts",
+        "build:types": "rm -rf dist/types && bun run tsc",
+        "test": "bun test",
+        "lint": "biome check .",
+        "lint:fix": "biome check --write .",
+        "format": "biome format --write .",
+        "prepublishOnly": "bun run build && bun run build:types && bun test",
+        "publish": "bun publish"
+    },
+    "devDependencies": {
+        "typescript": "5.9.3"
+    },
+    "keywords": [
+        "layout",
+        "positioning",
+        "alignment",
+        "grid"
+    ],
+    "author": "Eigil Sagafos",
+    "license": "MIT"
+}

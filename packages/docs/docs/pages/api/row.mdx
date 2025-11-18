@@ -1,0 +1,97 @@
+# row
+
+import { DebugViewer } from "@casque/react"
+import { StyledDebugViewer } from '../../../components/StyledDebugViewer.tsx'
+import { layout as rowAlignTop } from '../../snippets/rowAlignTop.ts'
+import { layout as rowAlignCenter } from '../../snippets/rowAlignCenter.ts'
+import { layout as rowAlignBottom } from '../../snippets/rowAlignBottom.ts'
+import { layout as rowAlignAnchor } from '../../snippets/rowAlignAnchor.ts'
+
+Create a horizontal layout by arranging elements side-by-side from left to right.
+
+## Signature
+
+```typescript
+function row(config: {
+  items: (Element | Component)[];
+  align: "top" | "center" | "bottom" | "anchor";
+}): Component;
+```
+
+## Parameters
+
+### `items` (required)
+
+- **Type**: `(Element | Component)[]`
+- **Description**: Array of elements or components to arrange horizontally
+
+### `align` (required)
+
+- **Type**: `'top' | 'center' | 'bottom' | 'anchor'`
+- **Description**: Vertical alignment strategy for elements in the row
+
+#### Alignment Options:
+
+- **`top`**: Align all elements to the top edge
+- **`center`**: Center all elements vertically
+- **`bottom`**: Align all elements to the bottom edge
+- **`anchor`**: Align based on element anchor points
+
+## Returns
+
+A `Component` object containing:
+
+- `w`: Total width of the row
+- `h`: Height of the tallest element (plus alignment offsets)
+- `elements`: Array of positioned elements with x, y coordinates
+- `anchor`: Combined anchor from first and last items (if using anchor alignment)
+
+## Examples
+
+### Top Alignment
+
+<StyledDebugViewer component={rowAlignTop} />
+
+```typescript
+// [!include ~/snippets/rowAlignTop.ts]
+```
+
+### Center Alignment
+
+<StyledDebugViewer component={rowAlignCenter} />
+
+```typescript
+// [!include ~/snippets/rowAlignCenter.ts]
+```
+
+### Bottom Alignment
+
+<StyledDebugViewer component={rowAlignBottom} />
+
+```typescript
+// [!include ~/snippets/rowAlignBottom.ts]
+```
+
+### Anchor Alignment
+
+<StyledDebugViewer component={rowAlignAnchor} />
+
+```typescript
+// [!include ~/snippets/rowAlignAnchor.ts]
+```
+
+## Type Definitions
+
+```typescript
+type Component = {
+  elements: PositionedElement[];
+  w: number;
+  h: number;
+  anchor?: Anchor;
+};
+
+type PositionedElement = Element & {
+  x: number;
+  y: number;
+};
+```

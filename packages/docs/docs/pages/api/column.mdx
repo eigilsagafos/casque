@@ -1,0 +1,161 @@
+import { Inspector } from "@casque/react"
+import { layout as columnSimple1 } from "../../snippets/columnSimple1.ts"
+
+# column
+
+Create a vertical layout by stacking elements from top to bottom.
+
+<Inspector component={columnSimple1} standalone />
+
+## Signature
+
+```typescript
+function column(config: {
+    items: (Element | Component)[]
+    align: "left" | "center" | "right" | "anchor"
+}): Component
+```
+
+## Parameters
+
+### `items` (required)
+
+- **Type**: `(Element | Component)[]`
+- **Description**: Array of elements or components to stack vertically
+
+### `align` (required)
+
+- **Type**: `'left' | 'center' | 'right' | 'anchor'`
+- **Description**: Horizontal alignment strategy for elements in the column
+
+#### Alignment Options:
+
+- **`left`**: Align all elements to the left edge
+- **`center`**: Center all elements horizontally
+- **`right`**: Align all elements to the right edge
+- **`anchor`**: Align based on element anchor points
+
+## Returns
+
+A `Component` object containing:
+
+- `w`: Width of the widest element (plus alignment offsets)
+- `h`: Total height of the column
+- `elements`: Array of positioned elements with x, y coordinates
+- `anchor`: Combined anchor from first and last items (if using anchor
+  alignment)
+
+## Examples
+
+### Left Alignment
+
+```typescript
+import { element, column } from "casque"
+
+const box1 = element({ w: 100, h: 50 })
+const box2 = element({ w: 150, h: 50 })
+
+const layout = column({
+    items: [box1, box2],
+    align: "left",
+})
+
+// layout.w === 150
+// layout.h === 100
+// layout.elements[0] at { x: 0, y: 0 }
+// layout.elements[1] at { x: 0, y: 50 }
+```
+
+### Center Alignment
+
+```typescript
+const layout = column({
+    items: [box1, box2],
+    align: "center",
+})
+
+// Narrower box1 is centered horizontally relative to wider box2
+// layout.elements[0] at { x: 25, y: 0 }  // (150-100)/2
+// layout.elements[1] at { x: 0, y: 50 }
+```
+
+### Right Alignment
+
+```typescript
+const layout = column({
+    items: [box1, box2],
+    align: "right",
+})
+
+// All elements align to the right
+// layout.elements[0] at { x: 50, y: 0 }  // 150-100
+// layout.elements[1] at { x: 0, y: 50 }
+```
+
+### Anchor Alignment
+
+```typescript
+const box1 = element({
+    w: 100,
+    h: 50,
+    anchor: { top: 40, bottom: 60 }, // Different incoming/outgoing points
+})
+
+const box2 = element({
+    w: 150,
+    h: 50,
+    anchor: { top: 30, bottom: 50 },
+})
+
+const layout = column({
+    items: [box1, box2],
+    align: "anchor",
+})
+
+// box1's bottom anchor (x=60) aligns with box2's top anchor (x=30)
+```
+
+### With Margins
+
+```typescript
+const box1 = element({ w: 100, h: 50, margin: 10 })
+const box2 = element({ w: 100, h: 50, margin: 15 })
+
+const layout = column({
+    items: [box1, box2],
+    align: "left",
+})
+
+// Margins overlap: max(10, 15) = 15 pixels between boxes
+// layout.h === 115  // 50 + 15 + 50
+```
+
+## Interactive Demos
+
+{/* TODO: Add React components showing each alignment mode */}
+
+### Left Alignment Demo
+
+### Center Alignment Demo
+
+### Right Alignment Demo
+
+### Anchor Alignment Demo
+
+{/* <ColumnAnchorDemo /> */}
+
+## Type Definitions
+
+```typescript
+type Component = {
+    elements: PositionedElement[]
+    w: number
+    h: number
+    anchor?: Anchor
+}
+
+type PositionedElement = Element & {
+    x: number
+    y: number
+}
+```

@@ -1,0 +1,22 @@
+{
+    "name": "@casque/docs",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "bunx --bun vocs dev",
+        "build": "bunx --bun vocs build",
+        "preview": "bunx --bun vocs preview"
+    },
+    "dependencies": {
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "casque": "workspace:*",
+        "@casque/react": "workspace:*",
+        "vocs": "^1.1.4"
+    },
+    "devDependencies": {
+        "@types/react": "latest",
+        "typescript": "latest"
+    }
+}

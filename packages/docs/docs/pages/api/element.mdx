@@ -1,0 +1,131 @@
+import { ElementDemo } from "../../../components/ElementDemo";
+
+# element
+
+Create a layout element with specified dimensions and optional anchor and margin.
+
+<div data-title="Preview">
+  <ElementDemo />
+</div>
+
+## Signature
+
+```typescript
+function element(config: {
+  w: number;
+  h: number;
+  anchor?: Anchor;
+  margin?: Margin;
+}): Element;
+```
+
+## Parameters
+
+### `w` (required)
+
+- **Type**: `number`
+- **Description**: Width of the element
+
+### `h` (required)
+
+- **Type**: `number`
+- **Description**: Height of the element
+
+### `anchor` (optional)
+
+- **Type**: `Anchor`
+- **Description**: Anchor point(s) for alignment.
+
+Anchor can be:
+
+- `{ horizontal: number, vertical: number }` - Same anchor point for both directions
+- `{ left: number, right: number }` - Asymmetric horizontal anchors for rows
+- `{ top: number, bottom: number }` - Asymmetric vertical anchors for columns
+
+### `margin` (optional)
+
+- **Type**: `Margin`
+- **Description**: Spacing around the element.
+
+Margin can be:
+
+- `number` - Same margin on all sides
+- `{ left: number, right: number, top: number, bottom: number }` - Different margin per side
+
+## Returns
+
+An `Element` object with the specified properties.
+
+## Examples
+
+### Basic Element
+
+```typescript
+import { element } from "casque";
+
+const box = element({ w: 100, h: 50 });
+```
+
+### Element with Margin
+
+```typescript
+const box = element({
+  w: 100,
+  h: 50,
+  margin: 10,
+});
+```
+
+### Element with Anchor
+
+```typescript
+const box = element({
+  w: 100,
+  h: 50,
+  anchor: { horizontal: 50, vertical: 25 }, // Center of the box
+});
+```
+
+### Element with Complex Margin
+
+```typescript
+const box = element({
+  w: 100,
+  h: 50,
+  margin: {
+    left: 5,
+    right: 10,
+    top: 5,
+    bottom: 15,
+  },
+});
+```
+
+## Visual Examples
+
+{/* TODO: Add React component showing element with different configurations */}
+
+## Type Definitions
+
+```typescript
+type Anchor =
+  | { horizontal: number; vertical: number }
+  | { left: number; right: number }
+  | { top: number; bottom: number };
+
+type Margin =
+  | number
+  | {
+      left: number;
+      right: number;
+      top: number;
+      bottom: number;
+    };
+
+type Element = {
+  w: number;
+  h: number;
+  margin?: Margin;
+  anchor?: Anchor;
+};
+```

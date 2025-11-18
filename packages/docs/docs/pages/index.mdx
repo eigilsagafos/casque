@@ -1,0 +1,47 @@
+# Casque
+
+Casque is a flexible layout system for positioning and aligning elements in both horizontal (row) and vertical (column) directions.
+
+## Features
+
+- **Row & Column Layouts**: Organize elements horizontally or vertically
+- **Multiple Alignment Strategies**: Top, center, bottom, left, right, and anchor-based alignment
+- **Anchor Points**: Define custom connection points for precise element alignment
+- **Margin Support**: Built-in margin handling with intelligent overlap behavior
+- **TypeScript First**: Fully typed API for excellent developer experience
+- **Composable**: Nest rows and columns to create complex layouts
+
+## Quick Example
+
+```typescript
+import { element, row, column } from "casque";
+
+// Create elements
+const box1 = element({ w: 100, h: 50 });
+const box2 = element({ w: 100, h: 50 });
+
+// Create a horizontal layout
+const horizontalLayout = row({
+  items: [box1, box2],
+  align: "center",
+});
+
+// Create a vertical layout
+const verticalLayout = column({
+  items: [box1, box2],
+  align: "left",
+});
+```
+
+## Why Casque?
+
+Casque was created to solve layout calculations for process diagrams and flowcharts, where elements need to be precisely positioned and aligned. It provides a declarative API for describing layouts while handling all the complex positioning math for you.
+
+Unlike CSS-based layout systems, Casque gives you:
+
+- **Precise coordinates**: Get exact x, y positions for every element
+- **Anchor-based alignment**: Align elements at their logical connection points
+- **Programmatic control**: Calculate layouts in JavaScript/TypeScript
+- **Framework agnostic**: Use with React, Vue, Canvas, SVG, or any rendering system
+
+## Next Steps
