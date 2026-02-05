@@ -1,5 +1,11 @@
 # casque
 
+## 0.0.3
+
+### Patch Changes
+
+- Fix meta not rolling up to parent components
+
 ## 0.0.2
 
 ### Patch Changes
