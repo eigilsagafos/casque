@@ -1,38 +1,39 @@
 {
-  "name": "@casque/react",
-  "version": "0.0.1",
-  "type": "module",
-  "description": "React components for visualizing and debugging Casque layouts",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
-  "exports": {
-    ".": {
-      "import": "./src/index.ts",
-      "types": "./src/index.ts"
+    "name": "@casque/react",
+    "version": "0.0.1",
+    "type": "module",
+    "description": "React components for visualizing and debugging Casque layouts",
+    "main": "./src/index.ts",
+    "types": "./src/index.ts",
+    "private": true,
+    "exports": {
+        ".": {
+            "import": "./src/index.ts",
+            "types": "./src/index.ts"
+        }
+    },
+    "scripts": {
+        "build": "tsc",
+        "test": "echo \"No tests yet\""
+    },
+    "peerDependencies": {
+        "casque": "workspace:*",
+        "react": "^18.0.0"
+    },
+    "devDependencies": {
+        "@types/react": "^18.3.1",
+        "typescript": "5.9.3"
+    },
+    "keywords": [
+        "casque",
+        "layout",
+        "debug",
+        "visualization",
+        "react"
+    ],
+    "author": "Eigil Sagafos",
+    "license": "MIT",
+    "dependencies": {
+        "@floating-ui/react": "^0.27.16"
     }
-  },
-  "scripts": {
-    "build": "tsc",
-    "test": "echo \"No tests yet\""
-  },
-  "peerDependencies": {
-    "casque": "workspace:*",
-    "react": "^18.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.3.1",
-    "typescript": "5.9.3"
-  },
-  "keywords": [
-    "casque",
-    "layout",
-    "debug",
-    "visualization",
-    "react"
-  ],
-  "author": "Eigil Sagafos",
-  "license": "MIT",
-  "dependencies": {
-    "@floating-ui/react": "^0.27.16"
-  }
 }
