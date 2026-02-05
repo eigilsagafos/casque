@@ -34,6 +34,7 @@ export const positionFirstItem = (
             h: item.h,
             anchor: item.anchor,
             parentId,
+            meta: item.meta,
         }
         // Recursively flatten nested component references - keep their original parentId
         const nestedRefs = (item.components || []).map(c => ({
@@ -44,6 +45,7 @@ export const positionFirstItem = (
             h: c.h,
             anchor: c.anchor,
             parentId: c.parentId,
+            meta: c.meta,
         }))
         return {
             id: parentId,
@@ -110,6 +112,7 @@ export const positionComponentItem = (
         h: item.h,
         anchor: item.anchor,
         parentId: currentParentId,
+        meta: item.meta,
     }
     newComponentRef[config.primaryPos] = newItemPrimaryPos
     newComponentRef[config.secondaryPos] = newItemOffset
@@ -124,6 +127,7 @@ export const positionComponentItem = (
             h: c.h,
             anchor: c.anchor,
             parentId: c.parentId,
+            meta: c.meta,
         }
         ref[config.primaryPos] = c[config.primaryPos] + newItemPrimaryPos
         ref[config.secondaryPos] = c[config.secondaryPos] + newItemOffset

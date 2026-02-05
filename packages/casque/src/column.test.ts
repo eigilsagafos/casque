@@ -115,6 +115,36 @@ describe("column", () => {
             expect(res.components[0].elements).toBeUndefined()
         })
 
+        test("meta should be preserved in nested components", () => {
+            // Create nested row and column with meta
+            const nestedRow = row({
+                id: "nested-row",
+                items: [element({ w: 10, h: 10 })],
+                meta: { type: "row", level: 1 },
+            })
+            const nestedColumn = column({
+                id: "nested-column",
+                items: [element({ w: 10, h: 10 })],
+                meta: { type: "column", level: 1 },
+            })
+
+            // Add them to a parent column
+            const parent = column({
+                items: [nestedRow, nestedColumn],
+                meta: { type: "parent" },
+            })
+
+            // Check that parent has its own meta
+            expect(parent.meta).toEqual({ type: "parent" })
+
+            // Check that nested components keep their meta
+            const rowRef = parent.components?.find(c => c.id === "nested-row")
+            const colRef = parent.components?.find(c => c.id === "nested-column")
+
+            expect(rowRef?.meta).toEqual({ type: "row", level: 1 })
+            expect(colRef?.meta).toEqual({ type: "column", level: 1 })
+        })
+
         test("adding element after component should work", () => {
             // This triggers positionElementItem with existing components
             const box1 = element({ w: 10, h: 10, id: "box1" })
